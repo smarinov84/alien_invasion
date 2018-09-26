@@ -12,7 +12,7 @@ def run_game():
     pygame.display.set_caption('Alien Invasion')
 
     # Initialize objects
-    ship = Ship(screen)
+    ship = Ship(screen, game_settings)
 
     # Start the main loop for the game
     # This is an event loop that manages screen updates when users perform
