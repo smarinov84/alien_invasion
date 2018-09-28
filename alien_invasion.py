@@ -1,10 +1,11 @@
 import pygame
+from pygame.sprite import Group
 
 from settings import Settings
 from ship import Ship
 import game_functions as gf
 
-def run_game():
+def run_game()  :
     # Initialize and create the screen object
     pygame.init()
     game_settings = Settings()
@@ -13,6 +14,8 @@ def run_game():
 
     # Initialize objects
     ship = Ship(screen, game_settings)
+    # Make a group to store bullets in
+    bullets = Group()
 
     # Start the main loop for the game
     # This is an event loop that manages screen updates when users perform
@@ -20,13 +23,16 @@ def run_game():
     while True:
 
         # Watch for keyboard and mouse events
-        gf.check_events(ship)
+        gf.check_events(game_settings, screen, ship, bullets)
 
-        # Reflect any ship movement
+        # Reflect ship object movements
         ship.update()
+
+        # Reflect the bullet objects on the screen
+        gf.update_bullets(bullets)
 
         # Redraw the screen during each pass through the loop and reflect
         # all event changes
-        gf.update_screen(game_settings, screen, ship)
+        gf.update_screen(game_settings, screen, ship, bullets)
 
 run_game()
