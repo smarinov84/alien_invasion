@@ -35,6 +35,8 @@ def check_keydown_events(event, game_settings, screen, ship, bullets):
         ship.moving_left = True
     elif event.key == pygame.K_SPACE:
         fire_bullet(game_settings, screen, ship, bullets)
+    elif event.key == pygame.K_q:
+        sys.exit()
 
 
 def check_keyup_events(event, ship):
@@ -49,7 +51,7 @@ def check_keyup_events(event, ship):
         ship.moving_left = False
 
 
-def update_screen(game_settings, screen, ship, bullets):
+def update_screen(game_settings, screen, ship, bullets, alien):
     """Update images on the screen and flip to the new screen
     :param bullets: sprite of bullet objects
     :param game_settings: general settings for the game
@@ -62,6 +64,8 @@ def update_screen(game_settings, screen, ship, bullets):
 
     # Draw the ship on the screen
     ship.blitme()
+    # Draw the alien on the screen
+    alien.blitme()
 
     # Redraw all bullets behind ship abd aliens
     for bullet in bullets.sprites():
