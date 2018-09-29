@@ -2,6 +2,7 @@ import sys
 import pygame
 
 from bullet import Bullet
+from alien import Alien
 
 def check_events(game_settings, screen, ship,  bullets):
     """Respond to keypresses and mouse events
@@ -51,7 +52,7 @@ def check_keyup_events(event, ship):
         ship.moving_left = False
 
 
-def update_screen(game_settings, screen, ship, bullets, alien):
+def update_screen(game_settings, screen, ship, bullets, aliens):
     """Update images on the screen and flip to the new screen
     :param bullets: sprite of bullet objects
     :param game_settings: general settings for the game
@@ -65,7 +66,7 @@ def update_screen(game_settings, screen, ship, bullets, alien):
     # Draw the ship on the screen
     ship.blitme()
     # Draw the alien on the screen
-    alien.blitme()
+    aliens.draw(screen)
 
     # Redraw all bullets behind ship abd aliens
     for bullet in bullets.sprites():
@@ -87,10 +88,39 @@ def update_bullets(bullets):
             bullets.remove(bullet)
 
 
-def fire_bullet(game_settings, screen, ship ,bullets):
-    """Create bullets to be displayed on the screen if user pressed SPACE bar"""
+def fire_bullet(game_settings, screen, ship , bullets):
+    """Create bullets to be displayed on the screen if user pressed SPACE bar
+    :param game_settings:
+    :param screen:
+    :param ship:
+    :param bullets:
+    """
     # Create a new bullet and add it to the bullets group if we haven't
     # Reached the maximum bullets allowed
     if len(bullets) < game_settings.bullets_allowed:
         new_bullet = Bullet(game_settings, screen, ship)
         bullets.add(new_bullet)
+
+
+def create_fleet(game_settings, screen, aliens):
+    """Create a full fleet of aliens
+    :param game_settings: 
+    :param screen: 
+    :param aliens: 
+    """
+
+    # Create an alien and find the number of aliens in a row
+    # Spacing between aliens is equal to one alien width
+    alien = Alien(game_settings, screen)
+    alien_width = alien.rect.width
+    available_space_x = game_settings.screen_width - (2 * alien_width)
+    number_aliens_x = int(available_space_x / (2 * alien_width))
+
+    # Create the first row of aliens
+    for alien_number in range(number_aliens_x):
+        # Create an alien and place it in the row
+        alien = Alien(game_settings, screen)
+        alien.x = alien_width + (2 * alien_width) * alien_number
+
+        alien.rect.x = alien.x
+        aliens.add(alien)

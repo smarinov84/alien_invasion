@@ -12,17 +12,16 @@ class Alien(Sprite):
 
         #load the alien image and setup its rect objects
         self.image = pygame.image.load('images/alien.bmp')
-        self.alien_rect = self.image.get_rect()
-        self.screen_rect = self.screen.get_rect()
+        self.rect = self.image.get_rect()
 
         # align the alien image on the screen
-        self.alien_rect.x = self.alien_rect.width
-        self.alien_rect.y = self.alien_rect.height
+        self.rect.x = self.rect.width
+        self.rect.y = self.rect.height
 
         # Store a decimal value for the alien's center (in order to move faster
         # across the screen
-        self.x = float(self.alien_rect.x)
+        self.x = float(self.rect.x)
 
     def blitme(self):
         """Draw the alien at its current location"""
-        self.screen.blit(self.image, self.alien_rect)
+        self.screen.blit(self.image, self.rect)
