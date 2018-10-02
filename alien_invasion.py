@@ -22,7 +22,7 @@ def run_game()  :
     aliens = Group()
 
     # Create the fleet of aliens
-    gf.create_fleet(game_settings, screen, aliens)
+    gf.create_fleet(game_settings, screen, aliens, ship)
 
     # Start the main loop for the game
     # This is an event loop that manages screen updates when users perform
@@ -37,6 +37,9 @@ def run_game()  :
 
         # Reflect the bullet objects on the screen
         gf.update_bullets(bullets)
+
+        # Reflect the movement of the alien ships on the screen
+        gf.update_aliens(game_settings, aliens)
 
         # Redraw the screen during each pass through the loop and reflect
         # all event changes

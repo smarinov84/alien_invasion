@@ -17,6 +17,11 @@ class Settings():
             # Platform specific Bullet settings
             self.bullet_speed_factor = 10.0
 
+            # Platform specific Alien settings
+            self.alien_speed_factor = 2.0
+            self.alien_fleet_drop_speed = 15.0
+            self.alien_fleet_direction = 1 # 1=right, -1=left
+
         else:
             # Platform specific screen settings
             self.screen_width = 1200
@@ -28,6 +33,11 @@ class Settings():
             # Platform specific Bullet settings
             self.bullet_speed_factor = 1.5
 
+            # Platform specific Alien settings
+            self.alien_speed_factor = 1.0
+            self.alien_fleet_drop_speed = 10.0
+            self.alien_fleet_direction = 1 # 1=right, -1=left
+
         # General screen settings
         self.bg_color = (230, 230, 230)
 
@@ -37,7 +47,7 @@ class Settings():
         self.bullet_color = (60, 60, 60)
         self.bullets_allowed = 3
 
-        # Alien settings
+        # General Alien settings
 
 
     def screen_dimensions(self):
