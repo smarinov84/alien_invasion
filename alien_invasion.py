@@ -36,7 +36,7 @@ def run_game()  :
         ship.update()
 
         # Reflect the bullet objects on the screen
-        gf.update_bullets(bullets, aliens)
+        gf.update_bullets(bullets, aliens, game_settings, screen, ship)
 
         # Reflect the movement of the alien ships on the screen
         gf.update_aliens(game_settings, aliens)

@@ -31,7 +31,7 @@ class Settings():
             self.ship_speed_factor = 1.0
 
             # Platform specific Bullet settings
-            self.bullet_speed_factor = 1.5
+            self.bullet_speed_factor = 3
 
             # Platform specific Alien settings
             self.alien_speed_factor = 1
