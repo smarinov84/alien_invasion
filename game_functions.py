@@ -12,7 +12,6 @@ def check_events(game_settings, screen, ship,  bullets):
     :rtype: none
     :param ship: ship object
     """
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
@@ -59,18 +58,17 @@ def update_screen(game_settings, screen, ship, bullets, aliens):
     :param screen: screen object for the game
     :param ship: ship object
     """
-
     # Redraw the screen
     screen.fill(game_settings.bg_color)
+
+    # Redraw all bullets behind ship abd aliens
+    for bullet in bullets.sprites():
+        bullet.draw_bullet()
 
     # Draw the ship on the screen
     ship.blitme()
     # Draw the alien on the screen
     aliens.draw(screen)
-
-    # Redraw all bullets behind ship abd aliens
-    for bullet in bullets.sprites():
-        bullet.draw_bullet()
 
     # Make the most recently drawn screen visible
     pygame.display.flip()
@@ -90,7 +88,6 @@ def update_bullets(bullets):
 
 def update_aliens(game_settings, aliens):
     """Update the position of all aliens in the fleet"""
-
     # Check if the fleet is at the screen's edges
     check_fleet_edges(game_settings, aliens)
     aliens.update()
@@ -116,7 +113,6 @@ def create_fleet(game_settings, screen, aliens, ship):
     :param screen: 
     :param aliens: 
     """
-
     # Create an alien and find the number of aliens in a row
     # Spacing between aliens is equal to one alien width
     alien = Alien(game_settings, screen)
@@ -152,9 +148,8 @@ def create_alien(game_settings, screen, alien_number, aliens, row_number):
     :param alien_number:
     :param aliens:
     """
-
     # Create an alien and place it in the row
-    alien = Alien(game_settings, screen)
+    alien = Alien(screen, game_settings)
     alien_width = alien.rect.width
     alien.x = alien_width + (2 * alien_width) * alien_number
 
@@ -171,7 +166,6 @@ def get_number_row(game_settings, alien_height, ship_height):
     :param ship_height: 
     :return number_rows:
     """
-
     available_space_y = (game_settings.screen_height - (3 * alien_height)
                          - ship_height)
 
@@ -185,7 +179,6 @@ def check_fleet_edges(game_settings, aliens):
     :param game_settigs:
     :param aliens:
     """
-
     for alien in aliens.sprites():
         if alien.check_edges():
             change_fleet_direction(game_settings, aliens)
@@ -197,7 +190,6 @@ def change_fleet_direction(game_settings, aliens):
     :param game_settings:
     :param aliens:
     """
-
     for alien in aliens.sprites():
         alien.rect.y += game_settings.alien_fleet_drop_speed
-        game_settings.alien_fleet_direction *= -1
+    game_settings.alien_fleet_direction *= -1
