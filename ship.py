@@ -42,3 +42,7 @@ class Ship():
         # given that rect doesnt support decimals
         self.rect.centerx = self.center
 
+
+    def center_ship(self):
+        """Center a ship to the middle of the screen"""
+        self.center = self.rect.centerx

@@ -19,7 +19,7 @@ class Settings():
 
             # Platform specific Alien settings
             self.alien_speed_factor = 2.0
-            self.alien_fleet_drop_speed = 15.0
+            self.alien_fleet_drop_speed = 185.0
             self.alien_fleet_direction = 1 # 1=right, -1=left
 
         else:
@@ -29,6 +29,7 @@ class Settings():
 
             # Platform specific Ship settings
             self.ship_speed_factor = 1.0
+            self.ship_limit = 3
 
             # Platform specific Bullet settings
             self.bullet_speed_factor = 3
@@ -46,8 +47,6 @@ class Settings():
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)
         self.bullets_allowed = 3
-
-        # General Alien settings
 
 
     def screen_dimensions(self):
