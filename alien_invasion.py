@@ -42,7 +42,7 @@ def run_game()  :
 
         # Watch for keyboard and mouse events
         gf.check_events(game_settings, screen, ship, bullets, stats,
-                        play_button, aliens)
+                        play_button, aliens, sb)
 
         if stats.game_active:
             # Reflect ship object movements
@@ -54,7 +54,7 @@ def run_game()  :
 
             # Reflect the movement of the alien ships on the screen
             gf.update_aliens(game_settings, aliens, ship, stats, screen,
-                             bullets)
+                             bullets, sb)
 
         # Redraw the screen during each pass through the loop and reflect
         # all event changes
